@@ -13,7 +13,7 @@ public class Registrarse : MonoBehaviour
         regisAnim.SetBool("backPaso2", false);
         regisAnim.SetBool("paso2", true);
      }
-    public void onClcikPaso3()
+    public void onClickPaso3()
     {
         regisAnim.SetBool("backPaso3", false);
         regisAnim.SetBool("paso2", false);
