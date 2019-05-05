@@ -7,6 +7,9 @@ public class barraAbajo : MonoBehaviour
     [SerializeField]
     private Animator barraAbajo_anim;
 
+    public GameObject socioYes;
+    public GameObject socioNo;
+
 
     public void onClickHome()
     {
@@ -22,6 +25,16 @@ public class barraAbajo : MonoBehaviour
     }
     public void onClickUser()
     {
+        if (userManager.Instance.newUserInfo.esSocio == false)
+        {
+            socioNo.SetActive(true);
+        }
+        if (userManager.Instance.newUserInfo.esSocio == true)
+        {
+            socioYes.SetActive(true);
+        }
+
+
         barraAbajo_anim.SetBool("home", false);
         barraAbajo_anim.SetBool("funciones", false);
         barraAbajo_anim.SetBool("user", true);

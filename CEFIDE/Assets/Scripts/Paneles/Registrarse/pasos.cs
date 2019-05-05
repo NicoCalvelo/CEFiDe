@@ -19,6 +19,10 @@ public class pasos : MonoBehaviour
     public InputField contraseña;
     public InputField repetirContra;
 
+    [Header("Paso 4")]
+    public bool isUser;
+    public Button No;
+    public Button Yes;
 
 
     public void procesarInfo1()
@@ -59,5 +63,31 @@ public class pasos : MonoBehaviour
             userManager.Instance.newUserInfo.contraseña = contraseña.text;
             registrarse.onClickPaso4();
         }
+    }
+    public void procesarInfo4()
+    {
+        if(isUser == false)
+        {
+            No.image.color = Color.red;
+            Yes.image.color = Color.grey;
+            userManager.Instance.newUserInfo.esSocio = isUser;
+        }
+        if(isUser == true)
+        {
+            No.image.color = Color.grey;
+            Yes.image.color = Color.green;
+            userManager.Instance.newUserInfo.esSocio = isUser;
+        }
+    }
+
+    public void userNo()
+    {
+        isUser = false;
+        procesarInfo4();
+    }
+    public void userYes()
+    {
+        isUser = true;
+        procesarInfo4();
     }
 }
