@@ -25,14 +25,6 @@ public class barraAbajo : MonoBehaviour
     }
     public void onClickUser()
     {
-        if (userManager.Instance.newUserInfo.esSocio == false)
-        {
-            socioNo.SetActive(true);
-        }
-        if (userManager.Instance.newUserInfo.esSocio == true)
-        {
-            socioYes.SetActive(true);
-        }
 
 
         barraAbajo_anim.SetBool("home", false);

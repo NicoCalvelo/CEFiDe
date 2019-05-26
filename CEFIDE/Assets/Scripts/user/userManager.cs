@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 public class userManager : MonoBehaviour
 {
@@ -31,5 +33,20 @@ public class userManager : MonoBehaviour
         newUserInfo = new userInfo();
 
         registrarse_Panel.gameObject.SetActive(true);
+    }
+    
+    public void submitUser()
+    {
+
+        userInfo awsUser = new userInfo();
+        awsUser.nombre = newUserInfo.nombre;
+        awsUser.mail = newUserInfo.mail;
+        awsUser.contraseña = newUserInfo.contraseña;
+        awsUser.DNI = newUserInfo.DNI;
+
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file = File.Create(Application.persistentDataPath + "/user " + awsUser.mail + ".dat");
+        bf.Serialize(file, awsUser);
+        file.Close();
     }
 }

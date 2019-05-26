@@ -25,6 +25,7 @@ public class Registrarse : MonoBehaviour
         regisAnim.SetBool("paso3", false);
         regisAnim.SetBool("paso4", true);
     }
+
     public void onClickBackPaso2()
     {
         regisAnim.SetBool("paso2", false);
