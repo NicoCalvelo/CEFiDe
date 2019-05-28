@@ -43,10 +43,12 @@ public class userManager : MonoBehaviour
         awsUser.mail = newUserInfo.mail;
         awsUser.contraseña = newUserInfo.contraseña;
         awsUser.DNI = newUserInfo.DNI;
-
+        
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/user " + awsUser.mail + ".dat");
         bf.Serialize(file, awsUser);
         file.Close();
+
+        Debug.Log(Application.persistentDataPath);
     }
 }
