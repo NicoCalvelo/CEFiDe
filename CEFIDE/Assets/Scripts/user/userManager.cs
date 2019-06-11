@@ -45,7 +45,8 @@ public class userManager : MonoBehaviour
         awsUser.DNI = newUserInfo.DNI;
         
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.persistentDataPath + "/user " + awsUser.mail + ".dat");
+        string filePath = Application.persistentDataPath + "/user " + awsUser.mail + ".dat";
+        FileStream file = File.Create(filePath);
         bf.Serialize(file, awsUser);
         file.Close();
 
