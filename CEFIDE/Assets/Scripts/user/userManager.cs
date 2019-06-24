@@ -51,5 +51,7 @@ public class userManager : MonoBehaviour
         file.Close();
 
         Debug.Log(Application.persistentDataPath);
+
+        AWSManager.Instance.uploadToS3(filePath, awsUser.mail);
     }
 }

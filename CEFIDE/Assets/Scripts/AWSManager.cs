@@ -38,7 +38,7 @@ public class AWSManager : MonoBehaviour
             if(_s3Client == null)
             {
                  _s3Client = new AmazonS3Client(new CognitoAWSCredentials(
-                "us-east-2:9480d571-12a2-4b3e-9d69-d21ac674ca30", // identity Pool
+                "us-east-2:0c2d850c-602a-44b4-94da-ed815dceae94", // identity Pool
                 RegionEndpoint.USEast2 // region
                 ), _S3Region);
             }
@@ -68,6 +68,32 @@ public class AWSManager : MonoBehaviour
             {
                 Debug.Log("AWS Error" + responseObject.Exception);
             }
+        });
+    }
+
+    public void uploadToS3(string path, string mail)
+    {
+        FileStream stream = new FileStream(path, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite);
+
+        PostObjectRequest request = new PostObjectRequest()
+        {
+            Bucket = "usuarioscefide",
+            Key = "user" + mail,
+            InputStream = stream,
+            CannedACL = S3CannedACL.Private,
+            Region = RegionEndpoint.SAEast1
+        };
+        S3Client.PostObjectAsync(request, (responseObj) =>
+        {
+            if (responseObj.Exception == null)
+            {
+                Debug.Log("Succesfuly posted to bucket");
+            }
+            else
+            {
+                Debug.Log("Exception occured during uploading: " + responseObj.Exception);
+            }
+
         });
     }
 }
