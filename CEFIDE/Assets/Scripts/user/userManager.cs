@@ -6,6 +6,7 @@ using System.IO;
 
 public class userManager : MonoBehaviour
 {
+
     private static userManager _instance;
     public static userManager Instance
     {
@@ -35,9 +36,13 @@ public class userManager : MonoBehaviour
         registrarse_Panel.gameObject.SetActive(true);
     }
     
+    public void checkMail()
+    {
+        AWSManager.Instance.getList(newUserInfo.mail, true);
+    }
+
     public void submitUser()
     {
-
         userInfo awsUser = new userInfo();
         awsUser.nombre = newUserInfo.nombre;
         awsUser.mail = newUserInfo.mail;

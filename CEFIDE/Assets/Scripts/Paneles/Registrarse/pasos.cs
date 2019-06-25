@@ -75,8 +75,12 @@ public class pasos : MonoBehaviour
         {
             userManager.Instance.newUserInfo.contraseña = contraseña.text;
             panelDeCarga.SetActive(true);
-            userManager.submitUser();
+            userManager.checkMail();
         }
     }
+    public void userAlreadyExist(string userMail)
+    {
+
+    } 
 
 }

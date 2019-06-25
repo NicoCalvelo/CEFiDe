@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 11166543}
   - component: {fileID: 11166542}
   - component: {fileID: 11166541}
+  - component: {fileID: 11166544}
   m_Layer: 5
   m_Name: Ingresar_Panel
   m_TagString: Untagged
@@ -220,6 +221,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 11166539}
   m_CullTransparentMesh: 0
+--- !u!114 &11166544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 11166539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 646603a9fbd84c549a8b6e94b09e473c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loadPanel: {fileID: 1273315552}
+  mail: {fileID: 39873933}
+  "contrase\xF1a": {fileID: 2055229892}
 --- !u!1 &15365547
 GameObject:
   m_ObjectHideFlags: 0
@@ -7204,9 +7220,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 942173162}
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 11166544}
+        m_MethodName: onClickLogIn
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -7214,28 +7230,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 11166539}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1740705310}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, Unity.ugui, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
@@ -7423,6 +7417,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e8f24df3cdf7c94b879f5857ae6dbb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  userManager: {fileID: 0}
+  pasos: {fileID: 0}
   S3Region: us-east-2
 --- !u!4 &1191549371
 Transform:

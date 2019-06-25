@@ -10,8 +10,13 @@ using Amazon.S3.Util;
 using System.Collections.Generic;
 using Amazon.CognitoIdentity;
 using Amazon;
+using UnityEngine.SceneManagement;
+using System.Linq;
+
 public class AWSManager : MonoBehaviour
 {
+    public userManager userManager;
+    public pasos pasos;
     private static AWSManager _instance;
     public static AWSManager Instance
     {
@@ -55,7 +60,7 @@ public class AWSManager : MonoBehaviour
 
 
 
-        S3Client.ListBucketsAsync(new ListBucketsRequest(), (responseObject) =>
+       /* S3Client.ListBucketsAsync(new ListBucketsRequest(), (responseObject) =>
         {
             if (responseObject.Exception == null)
             {
@@ -68,8 +73,50 @@ public class AWSManager : MonoBehaviour
             {
                 Debug.Log("AWS Error" + responseObject.Exception);
             }
+        });*/
+    }
+
+    public void getList(string userMail, bool creando)
+    {
+        string target = "user" + userMail;
+
+        var request = new ListObjectsRequest()
+        {
+            BucketName = "usuarioscefide"
+        };
+
+        S3Client.ListObjectsAsync(request, (responseObject) =>
+        {
+            if (responseObject.Exception == null)
+            {
+                bool userFound = responseObject.Response.S3Objects.Any(obj => obj.Key == target);
+                
+                if(userFound == true && creando == true)
+                {
+                    //no crear usuario porque ese mail ya se esta utilizando
+                    pasos.userAlreadyExist(userMail);
+                }
+                else if (userFound == false && creando == true)
+                {
+                    //crear usuario porque no hay ninguno con ese mail
+                    userManager.submitUser();
+                }
+                else if(userFound == true && creando == false)
+                {
+                    //resetear escena porque el usuario se logeo
+                }
+                else if (userFound == false && creando == false)
+                {
+                    //No se puede logear porque no se encontro un usuario con ese mail
+                }
+            }
+            else
+            {
+                Debug.Log("Error getting List of items from S3: " + responseObject.Exception);
+            }
         });
     }
+
 
     public void uploadToS3(string path, string mail)
     {
