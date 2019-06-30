@@ -5,6 +5,10 @@ using UnityEngine.UI;
 
 public class pasos : MonoBehaviour
 {
+    [SerializeField]
+    private Text errorText;
+    [SerializeField]
+    private GameObject errorBar;
 
     public Registrarse registrarse;
     public userManager userManager;
@@ -80,7 +84,8 @@ public class pasos : MonoBehaviour
     }
     public void userAlreadyExist(string userMail)
     {
-
+        errorBar.SetActive(true);
+        errorText.text = "Ya hay un usuario registrado con el mail introducido";
     } 
 
 }

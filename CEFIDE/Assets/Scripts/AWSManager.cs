@@ -17,6 +17,7 @@ public class AWSManager : MonoBehaviour
 {
     public userManager userManager;
     public pasos pasos;
+    public ingresar ingresar;
     private static AWSManager _instance;
     public static AWSManager Instance
     {
