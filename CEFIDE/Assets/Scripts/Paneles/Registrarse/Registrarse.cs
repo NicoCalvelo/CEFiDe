@@ -19,12 +19,6 @@ public class Registrarse : MonoBehaviour
         regisAnim.SetBool("paso2", false);
         regisAnim.SetBool("paso3", true);
     }
-    public void onClickPaso4()
-    {
-        regisAnim.SetBool("backPaso4", false);
-        regisAnim.SetBool("paso3", false);
-        regisAnim.SetBool("paso4", true);
-    }
 
     public void onClickBackPaso2()
     {
@@ -36,10 +30,5 @@ public class Registrarse : MonoBehaviour
     {
         regisAnim.SetBool("paso3", false);
         regisAnim.SetBool("backPaso3", true);
-    }
-    public void onClickBackPaso4()
-    {
-        regisAnim.SetBool("paso4", false);
-        regisAnim.SetBool("backPaso4", true);
     }
 }

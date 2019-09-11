@@ -62,30 +62,8 @@ public class pasos : MonoBehaviour
         else
         {
             userManager.Instance.newUserInfo.DNI = DNI.text;
-            registrarse.onClickPaso4();
-        }
-    } 
-    public void procesarInfo4()
-    {
-        if (string.IsNullOrEmpty(contraseña.text) || string.IsNullOrEmpty(repetirContra.text))
-        {
-            Debug.Log("LLename los espacios querido");
-        }
-        else if (contraseña.text != repetirContra.text)
-        {
-            Debug.Log("Las contras no coinciden querido");
-        }
-        else
-        {
-            userManager.Instance.newUserInfo.contraseña = contraseña.text;
             panelDeCarga.SetActive(true);
-            userManager.checkMail();
+            userManager.submitUser();
         }
-    }
-    public void userAlreadyExist(string userMail)
-    {
-        errorBar.SetActive(true);
-        errorText.text = "Ya hay un usuario registrado con el mail introducido";
     } 
-
 }

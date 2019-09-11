@@ -8,6 +8,5 @@ public class userInfo
 {
     public string nombre;
     public string mail;
-    public string contraseña;
     public string DNI;
 }

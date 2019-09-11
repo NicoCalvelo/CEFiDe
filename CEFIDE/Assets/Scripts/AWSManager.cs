@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using Amazon.S3;
 using Amazon.S3.Model;
 using Amazon.Runtime;
@@ -12,12 +13,13 @@ using Amazon.CognitoIdentity;
 using Amazon;
 using UnityEngine.SceneManagement;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 
 public class AWSManager : MonoBehaviour
 {
+    public user_Panel user_Panel;
     public userManager userManager;
-    public pasos pasos;
-    public ingresar ingresar;
+
     private static AWSManager _instance;
     public static AWSManager Instance
     {
@@ -43,6 +45,7 @@ public class AWSManager : MonoBehaviour
         {
             if(_s3Client == null)
             {
+                userManager.load();
                  _s3Client = new AmazonS3Client(new CognitoAWSCredentials(
                 "us-east-2:0c2d850c-602a-44b4-94da-ed815dceae94", // identity Pool
                 RegionEndpoint.USEast2 // region
@@ -61,7 +64,7 @@ public class AWSManager : MonoBehaviour
 
 
 
-       /* S3Client.ListBucketsAsync(new ListBucketsRequest(), (responseObject) =>
+        S3Client.ListBucketsAsync(new ListBucketsRequest(), (responseObject) =>
         {
             if (responseObject.Exception == null)
             {
@@ -74,10 +77,10 @@ public class AWSManager : MonoBehaviour
             {
                 Debug.Log("AWS Error" + responseObject.Exception);
             }
-        });*/
+        });
     }
 
-    public void getList(string userMail, bool creando)
+    public void getList(string userMail)
     {
         string target = "user" + userMail;
 
@@ -91,24 +94,49 @@ public class AWSManager : MonoBehaviour
             if (responseObject.Exception == null)
             {
                 bool userFound = responseObject.Response.S3Objects.Any(obj => obj.Key == target);
-                
-                if(userFound == true && creando == true)
+
+                //usuario encontrado se descargara la info
+                if(userFound == true)
                 {
-                    //no crear usuario porque ese mail ya se esta utilizando
-                    pasos.userAlreadyExist(userMail);
+                    Debug.Log("user found");
+                    S3Client.GetObjectAsync("usuarioscefide", target, (responseObj) =>
+                    {
+                        //read data and aply it to a case (object) to be used
+
+
+                        if (responseObj.Response.ResponseStream != null)
+                        {
+
+                            byte[] data = null;
+
+                            using(StreamReader reader = new StreamReader(responseObj.Response.ResponseStream))
+                            {
+                                using ( MemoryStream memory = new MemoryStream())
+                                {
+                                    var buffer = new byte[512];
+                                    var byteReads = default(int);
+
+                                    while((byteReads = reader.BaseStream.Read(buffer, 0, buffer.Length)) > 0)
+                                    {
+                                        memory.Write(buffer, 0, byteReads);
+                                    }
+                                    data = memory.ToArray();
+                                }
+                            }
+
+                            using(MemoryStream memory = new MemoryStream(data))
+                            {
+                                BinaryFormatter bf = new BinaryFormatter();
+                                userInfo downloadedInfo = (userInfo)bf.Deserialize(memory);
+                                userManager.Instance.newUserInfo = downloadedInfo;
+                                user_Panel.isClient();
+                            }
+                        }
+                    });
                 }
-                else if (userFound == false && creando == true)
+                else
                 {
-                    //crear usuario porque no hay ninguno con ese mail
-                    userManager.submitUser();
-                }
-                else if(userFound == true && creando == false)
-                {
-                    //resetear escena porque el usuario se logeo
-                }
-                else if (userFound == false && creando == false)
-                {
-                    //No se puede logear porque no se encontro un usuario con ese mail
+                    Debug.Log("user not found");
                 }
             }
             else
@@ -136,6 +164,7 @@ public class AWSManager : MonoBehaviour
             if (responseObj.Exception == null)
             {
                 Debug.Log("Succesfuly posted to bucket");
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
             else
             {

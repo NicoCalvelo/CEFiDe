@@ -20,13 +20,31 @@ public class userManager : MonoBehaviour
             return _instance;
         }
     }
+    [SerializeField]
+    private string loged;
+    [SerializeField]
+    private string userMail;
 
+    public AWSManager aWSManager;
     public userInfo newUserInfo;
     public GameObject registrarse_Panel;
 
     private void Awake()
     {
         _instance = this;
+    }
+
+    public void load()
+    {
+        Debug.Log("tomo load");
+        if(loged != null)
+        {
+            aWSManager.getList(userMail);
+        }
+        else
+        {
+            Debug.Log("ignoro " + userMail);
+        }
     }
 
     public void createNewUser()
@@ -36,18 +54,17 @@ public class userManager : MonoBehaviour
         registrarse_Panel.gameObject.SetActive(true);
     }
     
-    public void checkMail()
-    {
-        AWSManager.Instance.getList(newUserInfo.mail, true);
-    }
 
     public void submitUser()
     {
         userInfo awsUser = new userInfo();
         awsUser.nombre = newUserInfo.nombre;
         awsUser.mail = newUserInfo.mail;
-        awsUser.contraseña = newUserInfo.contraseña;
         awsUser.DNI = newUserInfo.DNI;
+
+        PlayerPrefs.SetString("loged", loged);
+        PlayerPrefs.SetString(awsUser.mail, userMail);
+
         
         BinaryFormatter bf = new BinaryFormatter();
         string filePath = Application.persistentDataPath + "/user " + awsUser.mail + ".dat";
