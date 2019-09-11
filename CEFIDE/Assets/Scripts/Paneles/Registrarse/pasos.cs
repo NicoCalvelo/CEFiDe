@@ -24,9 +24,6 @@ public class pasos : MonoBehaviour
     [Header("Paso 3")]
     public InputField DNI;
 
-    [Header("Paso 4")]
-    public InputField contraseña;
-    public InputField repetirContra;
 
 
     public void procesarInfo1()

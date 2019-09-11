@@ -45,7 +45,6 @@ public class AWSManager : MonoBehaviour
         {
             if(_s3Client == null)
             {
-                userManager.load();
                  _s3Client = new AmazonS3Client(new CognitoAWSCredentials(
                 "us-east-2:0c2d850c-602a-44b4-94da-ed815dceae94", // identity Pool
                 RegionEndpoint.USEast2 // region

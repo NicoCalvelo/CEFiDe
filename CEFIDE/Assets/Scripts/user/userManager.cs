@@ -34,9 +34,9 @@ public class userManager : MonoBehaviour
         _instance = this;
     }
 
-    public void load()
+    public void Start()
     {
-        Debug.Log("tomo load");
+        Debug.Log("tomo Start");
         if(loged != null)
         {
             aWSManager.getList(userMail);
