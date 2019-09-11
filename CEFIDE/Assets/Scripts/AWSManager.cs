@@ -85,7 +85,7 @@ public class AWSManager : MonoBehaviour
 
         var request = new ListObjectsRequest()
         {
-            BucketName = "usuarioscefide"
+            BucketName = "ususarioscefide"
         };
 
         S3Client.ListObjectsAsync(request, (responseObject) =>
@@ -98,7 +98,7 @@ public class AWSManager : MonoBehaviour
                 if(userFound == true)
                 {
                     Debug.Log("user found");
-                    S3Client.GetObjectAsync("usuarioscefide", target, (responseObj) =>
+                    S3Client.GetObjectAsync("ususarioscefide", target, (responseObj) =>
                     {
                         //read data and aply it to a case (object) to be used
 
@@ -152,11 +152,11 @@ public class AWSManager : MonoBehaviour
 
         PostObjectRequest request = new PostObjectRequest()
         {
-            Bucket = "usuarioscefide",
+            Bucket = "ususarioscefide",
             Key = "user" + mail,
             InputStream = stream,
             CannedACL = S3CannedACL.Private,
-            Region = RegionEndpoint.SAEast1
+            Region = RegionEndpoint.USEast2
         };
         S3Client.PostObjectAsync(request, (responseObj) =>
         {

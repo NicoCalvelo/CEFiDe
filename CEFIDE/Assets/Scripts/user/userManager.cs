@@ -20,10 +20,6 @@ public class userManager : MonoBehaviour
             return _instance;
         }
     }
-    [SerializeField]
-    private string loged;
-    [SerializeField]
-    private string userMail;
 
     public AWSManager aWSManager;
     public userInfo newUserInfo;
@@ -37,20 +33,23 @@ public class userManager : MonoBehaviour
     public void Start()
     {
         Debug.Log("tomo Start");
-        if(loged != null)
+        if (PlayerPrefs.GetString("userMail") != "")
         {
-            aWSManager.getList(userMail);
+            Debug.Log("No Ignoro");
+            Debug.Log(PlayerPrefs.GetString("userMail"));
+            aWSManager.getList(PlayerPrefs.GetString("userMail"));
         }
         else
         {
-            Debug.Log("ignoro " + userMail);
+            Debug.Log("userMil is empty");
         }
     }
+
+
 
     public void createNewUser()
     {
         newUserInfo = new userInfo();
-
         registrarse_Panel.gameObject.SetActive(true);
     }
     
@@ -62,8 +61,7 @@ public class userManager : MonoBehaviour
         awsUser.mail = newUserInfo.mail;
         awsUser.DNI = newUserInfo.DNI;
 
-        PlayerPrefs.SetString("loged", loged);
-        PlayerPrefs.SetString(awsUser.mail, userMail);
+        PlayerPrefs.SetString("userMail", awsUser.mail);
 
         
         BinaryFormatter bf = new BinaryFormatter();

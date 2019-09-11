@@ -6,7 +6,7 @@ public class homePanel : MonoBehaviour
 {
     [SerializeField]
     private Animator anim_homePanel;
-
+    public userManager user;
 
     public void onClickNoticias()
     {

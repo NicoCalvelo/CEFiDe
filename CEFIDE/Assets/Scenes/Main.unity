@@ -174,6 +174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim_homePanel: {fileID: 15365550}
+  user: {fileID: 978288502}
 --- !u!95 &15365550
 Animator:
   serializedVersion: 3
@@ -727,9 +728,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 224700375}
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 978288502}
+        m_MethodName: createNewUser
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2887,7 +2888,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 36309228}
-        m_MethodName: procesarInfo4
+        m_MethodName: procesarInfo3
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5212,9 +5213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 142ae552fff965041b0ac6b9bff595fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loged: 
-  userMail: 
-  aWSManager: {fileID: 0}
+  aWSManager: {fileID: 1191549370}
   newUserInfo:
     nombre: 
     mail: 
@@ -5940,8 +5939,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e8f24df3cdf7c94b879f5857ae6dbb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  user_Panel: {fileID: 0}
-  userManager: {fileID: 0}
+  user_Panel: {fileID: 121098236}
+  userManager: {fileID: 978288502}
   S3Region: us-east-2
 --- !u!4 &1191549371
 Transform:
@@ -8519,7 +8518,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 224700380}
-        m_MethodName: onClickBackPaso4
+        m_MethodName: onClcikBackPaso3
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8579,7 +8578,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1740705311}
   m_Layer: 5
-  m_Name: LogIn_Panel
+  m_Name: User_Insert_Data_Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
