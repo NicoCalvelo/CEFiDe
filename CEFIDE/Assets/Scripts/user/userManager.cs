@@ -32,16 +32,13 @@ public class userManager : MonoBehaviour
 
     public void Start()
     {
-        Debug.Log("tomo Start");
-        if (PlayerPrefs.GetString("userMail") != "")
+        if (PlayerPrefs.GetString("userDNI") != "")
         {
-            Debug.Log("No Ignoro");
-            Debug.Log(PlayerPrefs.GetString("userMail"));
-            aWSManager.getList(PlayerPrefs.GetString("userMail"));
+            AWSManager.Instance.getList(PlayerPrefs.GetString("userDNI"));
         }
         else
         {
-            Debug.Log("userMil is empty");
+            Debug.Log("userDNI is empty");
         }
     }
 
@@ -61,17 +58,17 @@ public class userManager : MonoBehaviour
         awsUser.mail = newUserInfo.mail;
         awsUser.DNI = newUserInfo.DNI;
 
-        PlayerPrefs.SetString("userMail", awsUser.mail);
+        PlayerPrefs.SetString("userDNI", awsUser.DNI);
 
         
         BinaryFormatter bf = new BinaryFormatter();
-        string filePath = Application.persistentDataPath + "/user " + awsUser.mail + ".dat";
+        string filePath = Application.persistentDataPath + "/user " + awsUser.DNI + ".dat";
         FileStream file = File.Create(filePath);
         bf.Serialize(file, awsUser);
         file.Close();
 
         Debug.Log(Application.persistentDataPath);
 
-        AWSManager.Instance.uploadToS3(filePath, awsUser.mail);
+        AWSManager.Instance.uploadToS3(filePath, awsUser.DNI);
     }
 }

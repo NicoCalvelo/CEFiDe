@@ -30,7 +30,8 @@ public class pasos : MonoBehaviour
     {
         if (string.IsNullOrEmpty(nombre.text) || string.IsNullOrEmpty(apellido.text))
         {
-            Debug.Log("LLename los espacios querido");
+            errorBar.SetActive(true);
+            errorText.text = "Todos los espacios deben ser rellenados";
         }
         else
         {
@@ -42,7 +43,8 @@ public class pasos : MonoBehaviour
     {
         if (string.IsNullOrEmpty(mail.text))
         {
-            Debug.Log("LLename los espacios querido");
+            errorBar.SetActive(true);
+            errorText.text = "Todos los espacios deben ser rellenados";
         }
         else
         {
@@ -54,7 +56,8 @@ public class pasos : MonoBehaviour
     {
         if (string.IsNullOrEmpty(DNI.text))
         {
-            Debug.Log("LLename los espacios querido");
+            errorBar.SetActive(true);
+            errorText.text = "Todos los espacios deben ser rellenados";
         }
         else
         {

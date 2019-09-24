@@ -79,9 +79,9 @@ public class AWSManager : MonoBehaviour
         });
     }
 
-    public void getList(string userMail)
+    public void getList(string DNI)
     {
-        string target = "user" + userMail;
+        string target = "user" + DNI;
 
         var request = new ListObjectsRequest()
         {
@@ -128,6 +128,7 @@ public class AWSManager : MonoBehaviour
                                 BinaryFormatter bf = new BinaryFormatter();
                                 userInfo downloadedInfo = (userInfo)bf.Deserialize(memory);
                                 userManager.Instance.newUserInfo = downloadedInfo;
+                                //Activate userPanel
                                 user_Panel.isClient();
                             }
                         }
@@ -146,14 +147,14 @@ public class AWSManager : MonoBehaviour
     }
 
 
-    public void uploadToS3(string path, string mail)
+    public void uploadToS3(string path, string DNI)
     {
         FileStream stream = new FileStream(path, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite);
 
         PostObjectRequest request = new PostObjectRequest()
         {
             Bucket = "ususarioscefide",
-            Key = "user" + mail,
+            Key = "user" + DNI,
             InputStream = stream,
             CannedACL = S3CannedACL.Private,
             Region = RegionEndpoint.USEast2

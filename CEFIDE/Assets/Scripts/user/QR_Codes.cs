@@ -7,7 +7,6 @@ using ZXing.QrCode;
 
 public class QR_Codes : MonoBehaviour
 {
-    public InputField code;
     public RawImage qr;
 
     private static Color32[] Encode(string textForEncoding, int width, int height)
@@ -35,6 +34,6 @@ public class QR_Codes : MonoBehaviour
 
     public void generate()
     {
-        qr.texture = generateQR(code.text);
+        qr.texture = generateQR(userManager.Instance.newUserInfo.DNI);
     }
 }
