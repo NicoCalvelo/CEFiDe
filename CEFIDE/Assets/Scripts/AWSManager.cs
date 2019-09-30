@@ -128,6 +128,7 @@ public class AWSManager : MonoBehaviour
                                 BinaryFormatter bf = new BinaryFormatter();
                                 userInfo downloadedInfo = (userInfo)bf.Deserialize(memory);
                                 userManager.Instance.newUserInfo = downloadedInfo;
+                           
                                 //Activate userPanel
                                 user_Panel.isClient();
                             }
