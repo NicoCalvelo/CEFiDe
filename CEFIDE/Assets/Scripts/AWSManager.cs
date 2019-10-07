@@ -27,7 +27,7 @@ public class AWSManager : MonoBehaviour
         {
             if(_instance == null)
             {
-                Debug.LogError("AWS Manager is null");
+                 Debug.LogError("AWS Manager is null");
             }
             return _instance;
         }

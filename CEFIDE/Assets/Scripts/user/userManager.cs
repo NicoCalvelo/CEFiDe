@@ -30,7 +30,7 @@ public class userManager : MonoBehaviour
         _instance = this;
     }
 
-    public void Start()
+    public void Start()       
     {
         if (PlayerPrefs.GetString("userDNI") != "")
         {
