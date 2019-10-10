@@ -23,6 +23,7 @@ public class userManager : MonoBehaviour
 
     public AWSManager aWSManager;
     public userInfo newUserInfo;
+
     public GameObject registrarse_Panel;
 
     private void Awake()
@@ -55,6 +56,7 @@ public class userManager : MonoBehaviour
     {
         userInfo awsUser = new userInfo();
         awsUser.nombre = newUserInfo.nombre;
+        awsUser.apellido = newUserInfo.apellido;
         awsUser.mail = newUserInfo.mail;
         awsUser.DNI = newUserInfo.DNI;
 

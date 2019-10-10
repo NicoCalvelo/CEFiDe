@@ -35,7 +35,8 @@ public class pasos : MonoBehaviour
         }
         else
         {
-            userManager.Instance.newUserInfo.nombre = nombre.text + " " + apellido.text;
+            userManager.Instance.newUserInfo.nombre = nombre.text;
+            userManager.Instance.newUserInfo.apellido = apellido.text;
             registrarse.onClickPaso2();
         }
     }

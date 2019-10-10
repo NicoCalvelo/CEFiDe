@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class userInfo
 {
     public string nombre;
+    public string apellido;
     public string mail;
     public string DNI;
 }
