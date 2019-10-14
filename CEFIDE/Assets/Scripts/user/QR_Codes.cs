@@ -8,6 +8,7 @@ using ZXing.QrCode;
 public class QR_Codes : MonoBehaviour
 {
     public RawImage qr;
+    private user_Panel userPanel;
 
     private static Color32[] Encode(string textForEncoding, int width, int height)
     {
@@ -35,5 +36,11 @@ public class QR_Codes : MonoBehaviour
     public void generate()
     {
         qr.texture = generateQR(userManager.Instance.newUserInfo.DNI);
+    }
+
+    public void onClickShow(RawImage texture)
+    {
+        userPanel = GameObject.Find("User_Panel").GetComponent<user_Panel>();
+        userPanel.showImg(texture.texture, texture.texture.width, texture.texture.height);
     }
 }

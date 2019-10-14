@@ -23,6 +23,7 @@ public class userManager : MonoBehaviour
 
     public AWSManager aWSManager;
     public userInfo newUserInfo;
+    public userEvaluaciones newUserEvaluaciones;
 
     public GameObject registrarse_Panel;
 
@@ -64,7 +65,7 @@ public class userManager : MonoBehaviour
 
         
         BinaryFormatter bf = new BinaryFormatter();
-        string filePath = Application.persistentDataPath + "/user " + awsUser.DNI + ".dat";
+        string filePath = Application.persistentDataPath + "/user" + awsUser.DNI + ".dat";
         FileStream file = File.Create(filePath);
         bf.Serialize(file, awsUser);
         file.Close();

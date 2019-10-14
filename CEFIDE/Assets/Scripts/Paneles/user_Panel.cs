@@ -10,6 +10,8 @@ public class user_Panel : MonoBehaviour
     public userManager userManager;
     public QR_Codes qrcode;
 
+    public GameObject showImage;
+
     [Header("Divisor")]
     public Text user_name;
 
@@ -19,6 +21,12 @@ public class user_Panel : MonoBehaviour
         noClient.SetActive(false);
         user_name.text = "Bienvenido " + userManager.Instance.newUserInfo.nombre;
         qrcode.generate();
+    }
+    public void showImg(Texture texture, float w, float h)
+    {
+        showImage.SetActive(true);
+        showImage.GetComponentInChildren<RawImage>().texture = texture;
+        showImage.GetComponentInChildren<AspectRatioFitter>().aspectRatio = w / h;
     }
 
 }

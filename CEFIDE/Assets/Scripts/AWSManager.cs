@@ -98,6 +98,7 @@ public class AWSManager : MonoBehaviour
                 if(userFound == true)
                 {
                     Debug.Log("user found");
+                    buscarPlanillas(DNI);
                     S3Client.GetObjectAsync("ususarioscefide", target, (responseObj) =>
                     {
                         //read data and aply it to a case (object) to be used
@@ -138,6 +139,72 @@ public class AWSManager : MonoBehaviour
                 else
                 {
                     Debug.Log("user not found");
+                }
+            }
+            else
+            {
+                Debug.Log("Error getting List of items from S3: " + responseObject.Exception);
+            }
+        });
+    }
+    public void buscarPlanillas(string DNI)
+    {
+        string target = "user" + DNI;
+
+        var request = new ListObjectsRequest()
+        {
+            BucketName = "resultadosevaluaciones"
+        };
+
+        //request Usuarios CEFiDe
+        S3Client.ListObjectsAsync(request, (responseObject) =>
+        {
+            if (responseObject.Exception == null)
+            {
+                bool userFound = responseObject.Response.S3Objects.Any(obj => obj.Key == target);
+
+                //usuario encontrado se descargara la info
+                if (userFound == true)
+                {
+                    Debug.Log("Planillasuser found");
+                    S3Client.GetObjectAsync("resultadosevaluaciones", target, (responseObj) =>
+                    {
+                        //read data and aply it to a case (object) to be used
+
+                        if (responseObj.Response.ResponseStream != null)
+                        {
+
+                            byte[] data = null;
+
+                            using (StreamReader reader = new StreamReader(responseObj.Response.ResponseStream))
+                            {
+                                using (MemoryStream memory = new MemoryStream())
+                                {
+                                    var buffer = new byte[512];
+                                    var byteReads = default(int);
+
+                                    while ((byteReads = reader.BaseStream.Read(buffer, 0, buffer.Length)) > 0)
+                                    {
+                                        memory.Write(buffer, 0, byteReads);
+                                    }
+                                    data = memory.ToArray();
+                                }
+                            }
+
+                            using (MemoryStream memory = new MemoryStream(data))
+                            {
+                                BinaryFormatter bf = new BinaryFormatter();
+                                userEvaluaciones downloadedInfo = (userEvaluaciones)bf.Deserialize(memory);
+                                userManager.Instance.newUserEvaluaciones = downloadedInfo;
+                                GameObject.Find("Display-Managers").GetComponent<displayManager>().setDisplays();
+                            }
+                        }
+                    });
+                }
+                else
+                {
+                    Debug.Log("Planillas user not found");
+
                 }
             }
             else
