@@ -23,7 +23,8 @@ public class pasos : MonoBehaviour
 
     [Header("Paso 3")]
     public InputField DNI;
-
+    public InputField dosDigitos;
+    public InputField fraseRecuerdo;
 
 
     public void procesarInfo1()
@@ -55,7 +56,7 @@ public class pasos : MonoBehaviour
     }
     public void procesarInfo3()
     {
-        if (string.IsNullOrEmpty(DNI.text))
+        if (string.IsNullOrEmpty(DNI.text) || string.IsNullOrEmpty(dosDigitos.text))
         {
             errorBar.SetActive(true);
             errorText.text = "Todos los espacios deben ser rellenados";
@@ -63,6 +64,8 @@ public class pasos : MonoBehaviour
         else
         {
             userManager.Instance.newUserInfo.DNI = DNI.text;
+            userManager.Instance.newUserInfo.tresCaracteres = dosDigitos.text;
+            userManager.Instance.newUserInfo.fraseRecuerdo = fraseRecuerdo.text;
             panelDeCarga.SetActive(true);
             userManager.submitUser();
         }

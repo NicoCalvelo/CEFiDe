@@ -10,4 +10,6 @@ public class userInfo
     public string apellido;
     public string mail;
     public string DNI;
+    public string tresCaracteres;
+    public string fraseRecuerdo;
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 
@@ -25,7 +26,14 @@ public class userManager : MonoBehaviour
     public userInfo newUserInfo;
     public userEvaluaciones newUserEvaluaciones;
 
+    [Header("Paneles")]
     public GameObject registrarse_Panel;
+    public GameObject userPanel;
+
+    [Header("Ingresar_Panel")]
+    public InputField dni;
+    public InputField tresCaracteres;
+
 
     private void Awake()
     {
@@ -41,6 +49,7 @@ public class userManager : MonoBehaviour
         else
         {
             Debug.Log("userDNI is empty");
+            userPanel.GetComponentInChildren<GameObject>().SetActive(true);
         }
     }
 
@@ -52,6 +61,18 @@ public class userManager : MonoBehaviour
         registrarse_Panel.gameObject.SetActive(true);
     }
     
+    public void ingresar()
+    {
+        if (string.IsNullOrEmpty(dni.text) || string.IsNullOrEmpty(tresCaracteres.text))
+        {
+            userPanel.GetComponent<user_Panel>().activarBarraError("Es necesario llenar todos los espacios");
+        }
+        else
+        {
+            aWSManager.ingresar(dni.text, tresCaracteres.text);
+        }
+
+    }
 
     public void submitUser()
     {
@@ -60,6 +81,8 @@ public class userManager : MonoBehaviour
         awsUser.apellido = newUserInfo.apellido;
         awsUser.mail = newUserInfo.mail;
         awsUser.DNI = newUserInfo.DNI;
+        awsUser.tresCaracteres = newUserInfo.tresCaracteres;
+        awsUser.fraseRecuerdo = newUserInfo.fraseRecuerdo;
 
         PlayerPrefs.SetString("userDNI", awsUser.DNI);
 

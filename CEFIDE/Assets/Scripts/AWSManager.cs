@@ -215,6 +215,81 @@ public class AWSManager : MonoBehaviour
     }
 
 
+    public void ingresar(string dni, string tresCaracteres)
+    {
+        string target = "user" + dni;
+
+
+        var request = new ListObjectsRequest()
+        {
+            BucketName = "ususarioscefide"
+        };
+
+        S3Client.ListObjectsAsync(request, (responseObject) =>
+        {
+            if (responseObject.Exception == null)
+            {
+                bool userFound = responseObject.Response.S3Objects.Any(obj => obj.Key == target);
+
+                //usuario encontrado se descargara la info
+                if (userFound == true)
+                {
+                    Debug.Log("user found");
+                    S3Client.GetObjectAsync("ususarioscefide", target, (responseObj) =>
+                    {
+                        //read data and aply it to a case (object) to be used
+                        if (responseObj.Response.ResponseStream != null)
+                        {
+
+                            byte[] data = null;
+
+                            using (StreamReader reader = new StreamReader(responseObj.Response.ResponseStream))
+                            {
+                                using (MemoryStream memory = new MemoryStream())
+                                {
+                                    var buffer = new byte[512];
+                                    var byteReads = default(int);
+
+                                    while ((byteReads = reader.BaseStream.Read(buffer, 0, buffer.Length)) > 0)
+                                    {
+                                        memory.Write(buffer, 0, byteReads);
+                                    }
+                                    data = memory.ToArray();
+                                }
+                            }
+                            using (MemoryStream memory = new MemoryStream(data))
+                            {
+                                BinaryFormatter bf = new BinaryFormatter();
+                                userInfo downloadedInfo = (userInfo)bf.Deserialize(memory);
+                                userManager.Instance.newUserInfo = downloadedInfo;
+
+                                if(userManager.Instance.newUserInfo.tresCaracteres == tresCaracteres)
+                                {
+                                    PlayerPrefs.SetString("userDNI", userManager.Instance.newUserInfo.DNI);
+                                    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                                }
+                                else
+                                {
+                                    user_Panel.activarBarraError("Los tres caracteres son incorrectos");
+                                }
+                            }
+                        }
+                    });
+                }
+                else
+                {
+                    Debug.Log("user not found");
+                    user_Panel.activarBarraError("Usuario no encontrado");
+                }
+            }
+            else
+            {
+                Debug.Log("Error getting List of items from S3: " + responseObject.Exception);
+            }
+        });
+    }
+
+
     public void uploadToS3(string path, string DNI)
     {
         FileStream stream = new FileStream(path, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite);

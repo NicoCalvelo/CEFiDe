@@ -10,10 +10,16 @@ public class user_Panel : MonoBehaviour
     public userManager userManager;
     public QR_Codes qrcode;
 
+    [SerializeField]
+    private GameObject errorBar;
+
     public GameObject showImage;
 
     [Header("Divisor")]
     public Text user_name;
+
+    [Header("Barra_Costado")]
+    public GameObject barraCostado;
 
     public void isClient()
     {
@@ -29,4 +35,10 @@ public class user_Panel : MonoBehaviour
         showImage.GetComponentInChildren<AspectRatioFitter>().aspectRatio = w / h;
     }
 
+    public void activarBarraError(string error)
+    {
+        errorBar.SetActive(true);
+        errorBar.GetComponentInChildren<Text>().text = error;
+    }
+    
 }
