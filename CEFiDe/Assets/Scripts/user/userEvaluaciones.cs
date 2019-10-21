@@ -11,4 +11,5 @@ public class userEvaluaciones
     public byte[] aerobico;
     public byte[] flexibilidad;
     public byte[] velocidad;
+    public byte[] planNutricional;
 }

@@ -196,7 +196,6 @@ public class AWSManager : MonoBehaviour
                                 BinaryFormatter bf = new BinaryFormatter();
                                 userEvaluaciones downloadedInfo = (userEvaluaciones)bf.Deserialize(memory);
                                 userManager.Instance.newUserEvaluaciones = downloadedInfo;
-                                GameObject.Find("Display-Managers").GetComponent<displayManager>().setDisplays();
                             }
                         }
                     });
@@ -213,7 +212,71 @@ public class AWSManager : MonoBehaviour
             }
         });
     }
+    //buscar noticias
+    public void buscarNoticias()
+    {
+        var request = new ListObjectsRequest()
+        {
+            BucketName = "novedadescefide"
+        };
 
+        //request Usuarios CEFiDe
+        S3Client.ListObjectsAsync(request, (responseObject) =>
+        {
+            if (responseObject.Exception == null)
+            {
+                bool noticiasFound = responseObject.Response.S3Objects.Any(obj => obj.Key == "noticias");
+
+                //usuario encontrado se descargara la info
+                if (noticiasFound == true)
+                {
+                    Debug.Log("Noticias founded");
+                    S3Client.GetObjectAsync("novedadescefide", "noticias", (responseObj) =>
+                    {
+                        //read data and aply it to a case (object) to be used
+
+                        if (responseObj.Response.ResponseStream != null)
+                        {
+
+                            byte[] data = null;
+
+                            using (StreamReader reader = new StreamReader(responseObj.Response.ResponseStream))
+                            {
+                                using (MemoryStream memory = new MemoryStream())
+                                {
+                                    var buffer = new byte[512];
+                                    var byteReads = default(int);
+
+                                    while ((byteReads = reader.BaseStream.Read(buffer, 0, buffer.Length)) > 0)
+                                    {
+                                        memory.Write(buffer, 0, byteReads);
+                                    }
+                                    data = memory.ToArray();
+                                }
+                            }
+
+                            using (MemoryStream memory = new MemoryStream(data))
+                            {
+                                BinaryFormatter bf = new BinaryFormatter();
+                                noticiaContent[] downloadedInfo = (noticiaContent[])bf.Deserialize(memory);
+                                userManager.Instance.noticias = downloadedInfo;
+
+                                userManager.setNoticias();
+                            }
+                        }
+                    });
+                }
+                else
+                {
+                    Debug.Log("Noticias not founded");
+                }
+            }
+            else
+            {
+                Debug.Log("Error getting List of items from S3: " + responseObject.Exception);
+            }
+        });
+    }
 
     public void ingresar(string dni, string tresCaracteres)
     {

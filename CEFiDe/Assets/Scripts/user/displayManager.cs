@@ -12,8 +12,9 @@ public class displayManager : MonoBehaviour
     private RectTransform scrollScreen;
     public userEvaluaciones newUserEvaluaciones;
 
-    public void setDisplays()
+    public void OnEnable()
     {
+        scrollScreen.sizeDelta = new Vector2(0, 211);
         newUserEvaluaciones = userManager.Instance.newUserEvaluaciones;
         int pos = 0;
         if (newUserEvaluaciones.resultadosEvaluacion.Length != 0)
@@ -21,7 +22,7 @@ public class displayManager : MonoBehaviour
             Texture2D reconstructedImage = new Texture2D(1, 1);
             reconstructedImage.LoadImage(userManager.Instance.newUserEvaluaciones.resultadosEvaluacion);
             Texture image = reconstructedImage as Texture;
-            Vector3 displayPos = new Vector3(0, 120 - pos, 0);
+            Vector3 displayPos = new Vector3(0, 0 - pos, 0);
             GameObject newDisplay = Instantiate(displayPrefab, Vector3.zero, Quaternion.identity);
             newDisplay.transform.SetParent(gameObject.transform);
             newDisplay.GetComponent<RectTransform>().anchoredPosition = displayPos;
@@ -31,15 +32,15 @@ public class displayManager : MonoBehaviour
             float w = image.width;
             float h = image.height;
             newDisplay.transform.GetChild(1).GetComponentInChildren<AspectRatioFitter>().aspectRatio = w / h;
-            scrollScreen.sizeDelta += new Vector2(0, 470);
-            pos += 650;
+            scrollScreen.sizeDelta += new Vector2(0, 640);
+            pos += 640;
         }
         if (newUserEvaluaciones.gimnasio.Length != 0)
         {
             Texture2D reconstructedImage = new Texture2D(1, 1);
             reconstructedImage.LoadImage(userManager.Instance.newUserEvaluaciones.gimnasio);
             Texture image = reconstructedImage as Texture;
-            Vector3 displayPos = new Vector3(0, 120 - pos, 0);
+            Vector3 displayPos = new Vector3(0, 0 - pos, 0);
             GameObject newDisplay = Instantiate(displayPrefab, Vector3.zero, Quaternion.identity);
             newDisplay.transform.SetParent(gameObject.transform);
             newDisplay.GetComponent<RectTransform>().anchoredPosition = displayPos;
@@ -49,15 +50,15 @@ public class displayManager : MonoBehaviour
             float w = image.width;
             float h = image.height;
             newDisplay.transform.GetChild(1).GetComponentInChildren<AspectRatioFitter>().aspectRatio = w / h;
-            scrollScreen.sizeDelta += new Vector2(0, 470);
-            pos += 650;
+            scrollScreen.sizeDelta += new Vector2(0, 640);
+            pos += 640;
         }
         if (newUserEvaluaciones.aerobico.Length != 0)
         {
             Texture2D reconstructedImage = new Texture2D(1, 1);
             reconstructedImage.LoadImage(userManager.Instance.newUserEvaluaciones.aerobico);
             Texture image = reconstructedImage as Texture;
-            Vector3 displayPos = new Vector3(0, 120 - pos, 0);
+            Vector3 displayPos = new Vector3(0, 0 - pos, 0);
             GameObject newDisplay = Instantiate(displayPrefab, Vector3.zero, Quaternion.identity);
             newDisplay.transform.SetParent(gameObject.transform);
             newDisplay.GetComponent<RectTransform>().anchoredPosition = displayPos;
@@ -67,15 +68,15 @@ public class displayManager : MonoBehaviour
             float w = image.width;
             float h = image.height;
             newDisplay.transform.GetChild(1).GetComponentInChildren<AspectRatioFitter>().aspectRatio = w / h;
-            scrollScreen.sizeDelta += new Vector2(0, 470);
-            pos += 650;
+            scrollScreen.sizeDelta += new Vector2(0, 640);
+            pos += 640;
         }
         if (newUserEvaluaciones.flexibilidad.Length != 0)
         {
             Texture2D reconstructedImage = new Texture2D(1, 1);
             reconstructedImage.LoadImage(userManager.Instance.newUserEvaluaciones.flexibilidad);
             Texture image = reconstructedImage as Texture;
-            Vector3 displayPos = new Vector3(0, 120 - pos, 0);
+            Vector3 displayPos = new Vector3(0, 0 - pos, 0);
             GameObject newDisplay = Instantiate(displayPrefab, Vector3.zero, Quaternion.identity);
             newDisplay.transform.SetParent(gameObject.transform);
             newDisplay.GetComponent<RectTransform>().anchoredPosition = displayPos;
@@ -85,15 +86,15 @@ public class displayManager : MonoBehaviour
             float w = image.width;
             float h = image.height;
             newDisplay.transform.GetChild(1).GetComponentInChildren<AspectRatioFitter>().aspectRatio = w / h;
-            scrollScreen.sizeDelta += new Vector2(0, 470);
-            pos += 650;
+            scrollScreen.sizeDelta += new Vector2(0, 640);
+            pos += 640;
         }
         if (newUserEvaluaciones.velocidad.Length != 0)
         {
             Texture2D reconstructedImage = new Texture2D(1, 1);
             reconstructedImage.LoadImage(userManager.Instance.newUserEvaluaciones.velocidad);
             Texture image = reconstructedImage as Texture;
-            Vector3 displayPos = new Vector3(0, 120 - pos, 0);
+            Vector3 displayPos = new Vector3(0, 0 - pos, 0);
             GameObject newDisplay = Instantiate(displayPrefab, Vector3.zero, Quaternion.identity);
             newDisplay.transform.SetParent(gameObject.transform);
             newDisplay.GetComponent<RectTransform>().anchoredPosition = displayPos;
@@ -103,8 +104,7 @@ public class displayManager : MonoBehaviour
             float w = image.width;
             float h = image.height;
             newDisplay.transform.GetChild(1).GetComponentInChildren<AspectRatioFitter>().aspectRatio = w / h;
-            scrollScreen.sizeDelta += new Vector2(0, 470);
-            pos += 650;
+            scrollScreen.sizeDelta += new Vector2(0, 640);
         }
     }
 }

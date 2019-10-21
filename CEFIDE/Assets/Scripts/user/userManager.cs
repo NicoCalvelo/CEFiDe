@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 using UnityEngine.UI;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
@@ -25,6 +26,8 @@ public class userManager : MonoBehaviour
     public AWSManager aWSManager;
     public userInfo newUserInfo;
     public userEvaluaciones newUserEvaluaciones;
+    public noticiaContent[] noticias;
+    public homePanel home_Panel;
 
     [Header("Paneles")]
     public GameObject registrarse_Panel;
@@ -51,8 +54,24 @@ public class userManager : MonoBehaviour
             Debug.Log("userDNI is empty");
             userPanel.GetComponentInChildren<GameObject>().SetActive(true);
         }
+        aWSManager.buscarNoticias();
     }
 
+    public void setNoticias()
+    {
+        foreach (noticiaContent n in noticias)
+        {
+            Vector3 nPos = new Vector3(0, 0 - (625 * Array.IndexOf(noticias, n)), 0);
+            GameObject newNoticia = Instantiate(home_Panel.noticiaPrefab, Vector3.zero, Quaternion.identity);
+            newNoticia.transform.SetParent(home_Panel.content.transform);
+            newNoticia.GetComponent<RectTransform>().anchoredPosition = nPos;
+            Texture2D reconstructedImage = new Texture2D(1, 1);
+            reconstructedImage.LoadImage(n.image);
+            Texture image = reconstructedImage as Texture;
+            newNoticia.GetComponent<noticia>().setNoticia(n.seccion, n.titulo, n.copete, n.cuerpo, image, image.width, image.height);
+            home_Panel.content.GetComponent<RectTransform>().sizeDelta += new Vector2(0, 630);
+        }
+    }
 
 
     public void createNewUser()

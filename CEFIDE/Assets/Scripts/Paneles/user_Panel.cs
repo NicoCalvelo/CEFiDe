@@ -41,4 +41,5 @@ public class user_Panel : MonoBehaviour
         errorBar.GetComponentInChildren<Text>().text = error;
     }
     
+
 }
