@@ -258,7 +258,7 @@ public class AWSManager : MonoBehaviour
                             using (MemoryStream memory = new MemoryStream(data))
                             {
                                 BinaryFormatter bf = new BinaryFormatter();
-                                noticiaContent[] downloadedInfo = (noticiaContent[])bf.Deserialize(memory);
+                                List<noticiaContent> downloadedInfo = (List<noticiaContent>)bf.Deserialize(memory);
                                 userManager.Instance.noticias = downloadedInfo;
 
                                 userManager.setNoticias();

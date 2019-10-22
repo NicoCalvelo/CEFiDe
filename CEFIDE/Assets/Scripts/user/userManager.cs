@@ -26,12 +26,13 @@ public class userManager : MonoBehaviour
     public AWSManager aWSManager;
     public userInfo newUserInfo;
     public userEvaluaciones newUserEvaluaciones;
-    public noticiaContent[] noticias;
+    public List<noticiaContent> noticias;
     public homePanel home_Panel;
 
     [Header("Paneles")]
     public GameObject registrarse_Panel;
     public GameObject userPanel;
+    public GameObject leerTexto;
 
     [Header("Ingresar_Panel")]
     public InputField dni;
@@ -61,7 +62,7 @@ public class userManager : MonoBehaviour
     {
         foreach (noticiaContent n in noticias)
         {
-            Vector3 nPos = new Vector3(0, 0 - (625 * Array.IndexOf(noticias, n)), 0);
+            Vector3 nPos = new Vector3(0, 0 - (625 * noticias.IndexOf(n)), 0);
             GameObject newNoticia = Instantiate(home_Panel.noticiaPrefab, Vector3.zero, Quaternion.identity);
             newNoticia.transform.SetParent(home_Panel.content.transform);
             newNoticia.GetComponent<RectTransform>().anchoredPosition = nPos;
