@@ -26,7 +26,7 @@ public class noticia : MonoBehaviour
     public void showText()
     {
         userManager.Instance.leerTexto.SetActive(true);
-        userManager.Instance.leerTexto.transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).GetComponent<Text>().text = titulo.text;
-        userManager.Instance.leerTexto.transform.GetChild(0).transform.GetChild(0).transform.GetChild(1).GetComponent<Text>().text = cuerpo.text;
+        userManager.Instance.leerTexto.GetComponent<leerTexto>().titulo.text = titulo.text;
+        userManager.Instance.leerTexto.GetComponent<leerTexto>().cuerpo.text = cuerpo.text;
     }
 }
