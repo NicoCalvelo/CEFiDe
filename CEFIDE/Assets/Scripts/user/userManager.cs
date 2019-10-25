@@ -34,6 +34,9 @@ public class userManager : MonoBehaviour
     public GameObject userPanel;
     public GameObject leerTexto;
 
+    [Header("Info_Panle")]
+    public byte[] horarios;
+
     [Header("Ingresar_Panel")]
     public InputField dni;
     public InputField tresCaracteres;
@@ -46,6 +49,7 @@ public class userManager : MonoBehaviour
 
     public void Start()       
     {
+        AWSManager.Instance.buscarNoticias();
         if (PlayerPrefs.GetString("userDNI") != "")
         {
             AWSManager.Instance.getList(PlayerPrefs.GetString("userDNI"));
@@ -55,23 +59,23 @@ public class userManager : MonoBehaviour
             Debug.Log("userDNI is empty");
             userPanel.GetComponentInChildren<GameObject>().SetActive(true);
         }
-        aWSManager.buscarNoticias();
     }
 
     public void setNoticias()
     {
         foreach (noticiaContent n in noticias)
         {
-            Vector3 nPos = new Vector3(0, 0 - (625 * noticias.IndexOf(n)), 0);
+            Vector3 nPos = new Vector3(0, 0 - (673 * noticias.IndexOf(n)), 0);
             GameObject newNoticia = Instantiate(home_Panel.noticiaPrefab, Vector3.zero, Quaternion.identity);
             newNoticia.transform.SetParent(home_Panel.content.transform);
-            newNoticia.GetComponent<RectTransform>().anchoredPosition = nPos;
+            newNoticia.GetComponent<RectTransform>().localPosition = nPos;
             Texture2D reconstructedImage = new Texture2D(1, 1);
             reconstructedImage.LoadImage(n.image);
             Texture image = reconstructedImage as Texture;
             newNoticia.GetComponent<noticia>().setNoticia(n.seccion, n.titulo, n.copete, n.cuerpo, image, image.width, image.height);
-            home_Panel.content.GetComponent<RectTransform>().sizeDelta += new Vector2(0, 630);
+            home_Panel.load.SetActive(false);
         }
+        home_Panel.content.GetComponent<RectTransform>().sizeDelta = new Vector2(534.7f, 666.65f * (noticias.FindLastIndex(f => f != null) + 1));
     }
 
 

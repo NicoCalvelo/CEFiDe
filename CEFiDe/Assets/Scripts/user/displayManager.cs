@@ -25,7 +25,7 @@ public class displayManager : MonoBehaviour
             Vector3 displayPos = new Vector3(0, 0 - pos, 0);
             GameObject newDisplay = Instantiate(displayPrefab, Vector3.zero, Quaternion.identity);
             newDisplay.transform.SetParent(gameObject.transform);
-            newDisplay.GetComponent<RectTransform>().anchoredPosition = displayPos;
+            newDisplay.GetComponent<RectTransform>().localPosition = displayPos;
             newDisplay.name = "Resultados Evaluaciones";
             newDisplay.transform.GetChild(3).GetComponentInChildren<Text>().text = newDisplay.name;
             newDisplay.transform.GetChild(1).GetComponentInChildren<RawImage>().texture = image;
@@ -43,7 +43,7 @@ public class displayManager : MonoBehaviour
             Vector3 displayPos = new Vector3(0, 0 - pos, 0);
             GameObject newDisplay = Instantiate(displayPrefab, Vector3.zero, Quaternion.identity);
             newDisplay.transform.SetParent(gameObject.transform);
-            newDisplay.GetComponent<RectTransform>().anchoredPosition = displayPos;
+            newDisplay.GetComponent<RectTransform>().localPosition = displayPos;
             newDisplay.name = "Planilla Gimnasio";
             newDisplay.transform.GetChild(3).GetComponentInChildren<Text>().text = newDisplay.name;
             newDisplay.transform.GetChild(1).GetComponentInChildren<RawImage>().texture = image;
@@ -61,7 +61,7 @@ public class displayManager : MonoBehaviour
             Vector3 displayPos = new Vector3(0, 0 - pos, 0);
             GameObject newDisplay = Instantiate(displayPrefab, Vector3.zero, Quaternion.identity);
             newDisplay.transform.SetParent(gameObject.transform);
-            newDisplay.GetComponent<RectTransform>().anchoredPosition = displayPos;
+            newDisplay.GetComponent<RectTransform>().localPosition = displayPos;
             newDisplay.name = "Planilla Aerobico";
             newDisplay.transform.GetChild(3).GetComponentInChildren<Text>().text = newDisplay.name;
             newDisplay.transform.GetChild(1).GetComponentInChildren<RawImage>().texture = image;
@@ -79,7 +79,7 @@ public class displayManager : MonoBehaviour
             Vector3 displayPos = new Vector3(0, 0 - pos, 0);
             GameObject newDisplay = Instantiate(displayPrefab, Vector3.zero, Quaternion.identity);
             newDisplay.transform.SetParent(gameObject.transform);
-            newDisplay.GetComponent<RectTransform>().anchoredPosition = displayPos;
+            newDisplay.GetComponent<RectTransform>().localPosition = displayPos;
             newDisplay.name = "Planilla Flexibilidad";
             newDisplay.transform.GetChild(3).GetComponentInChildren<Text>().text = newDisplay.name;
             newDisplay.transform.GetChild(1).GetComponentInChildren<RawImage>().texture = image;
@@ -97,7 +97,7 @@ public class displayManager : MonoBehaviour
             Vector3 displayPos = new Vector3(0, 0 - pos, 0);
             GameObject newDisplay = Instantiate(displayPrefab, Vector3.zero, Quaternion.identity);
             newDisplay.transform.SetParent(gameObject.transform);
-            newDisplay.GetComponent<RectTransform>().anchoredPosition = displayPos;
+            newDisplay.GetComponent<RectTransform>().localPosition = displayPos;
             newDisplay.name = "Planilla Velocidad";
             newDisplay.transform.GetChild(3).GetComponentInChildren<Text>().text = newDisplay.name;
             newDisplay.transform.GetChild(1).GetComponentInChildren<RawImage>().texture = image;
