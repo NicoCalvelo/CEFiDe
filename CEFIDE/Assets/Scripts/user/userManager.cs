@@ -54,26 +54,20 @@ public class userManager : MonoBehaviour
         {
             AWSManager.Instance.getList(PlayerPrefs.GetString("userDNI"));
         }
-        else
-        {
-            Debug.Log("userDNI is empty");
-            userPanel.GetComponentInChildren<GameObject>().SetActive(true);
-        }
     }
 
     public void setNoticias()
     {
+        home_Panel.load.SetActive(false);
         foreach (noticiaContent n in noticias)
         {
             Vector3 nPos = new Vector3(0, 0 - (673 * noticias.IndexOf(n)), 0);
-            GameObject newNoticia = Instantiate(home_Panel.noticiaPrefab, Vector3.zero, Quaternion.identity);
-            newNoticia.transform.SetParent(home_Panel.content.transform);
+            GameObject newNoticia = Instantiate(home_Panel.noticiaPrefab, Vector3.zero, Quaternion.identity, home_Panel.content.transform);
             newNoticia.GetComponent<RectTransform>().localPosition = nPos;
             Texture2D reconstructedImage = new Texture2D(1, 1);
             reconstructedImage.LoadImage(n.image);
             Texture image = reconstructedImage as Texture;
             newNoticia.GetComponent<noticia>().setNoticia(n.seccion, n.titulo, n.copete, n.cuerpo, image, image.width, image.height);
-            home_Panel.load.SetActive(false);
         }
         home_Panel.content.GetComponent<RectTransform>().sizeDelta = new Vector2(534.7f, 666.65f * (noticias.FindLastIndex(f => f != null) + 1));
     }
