@@ -69,7 +69,7 @@ public class userManager : MonoBehaviour
             Texture image = reconstructedImage as Texture;
             newNoticia.GetComponent<noticia>().setNoticia(n.seccion, n.titulo, n.copete, n.cuerpo, image, image.width, image.height);
         }
-        home_Panel.content.GetComponent<RectTransform>().sizeDelta = new Vector2(534.7f, 666.65f * (noticias.FindLastIndex(f => f != null) + 1));
+        home_Panel.content.GetComponent<RectTransform>().sizeDelta = new Vector2(534.7f, 673 * (noticias.FindLastIndex(f => f != null) + 1) + 20);
     }
 
 

@@ -11,6 +11,8 @@ public class homePanel : MonoBehaviour
     public GameObject noticiaPrefab;
     public GameObject load;
 
+    public List<Texture> logos;
+
     public GameObject showImage;
 
     public void showImg(Texture texture, float w, float h)
