@@ -11,5 +11,6 @@ public class display : MonoBehaviour
     {
         userPanel = GameObject.Find("User_Panel").GetComponent<user_Panel>();
         userPanel.showImg(texture.texture, texture.texture.width, texture.texture.height);
+        FindObjectOfType<escapeEvents>().setBools("showImage");
     }
 }

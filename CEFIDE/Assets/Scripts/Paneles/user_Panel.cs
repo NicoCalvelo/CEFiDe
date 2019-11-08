@@ -33,8 +33,20 @@ public class user_Panel : MonoBehaviour
         showImage.SetActive(true);
         showImage.GetComponentInChildren<RawImage>().texture = texture;
         showImage.GetComponentInChildren<AspectRatioFitter>().aspectRatio = w / h;
+        FindObjectOfType<escapeEvents>().setBools("showImage");
     }
-
+    public void activarBarraCostado()
+    {
+        FindObjectOfType<escapeEvents>().setBools("barraCostado");
+    }
+    public void registrarse()
+    {
+        FindObjectOfType<escapeEvents>().setBools("registrarse");
+    }
+    public void ingresar()
+    {
+        FindObjectOfType<escapeEvents>().setBools("ingresar");
+    }
     public void activarBarraError(string error)
     {
         errorBar.SetActive(true);

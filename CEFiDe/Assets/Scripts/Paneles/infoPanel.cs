@@ -21,6 +21,14 @@ public class infoPanel : MonoBehaviour
             planillaHorarios.GetComponent<AspectRatioFitter>().aspectRatio = w / h;
         });
     }
+    public void openHorarios()
+    {
+        FindObjectOfType<escapeEvents>().setBools("horarios");
+    }
+    public void openContactenos()
+    {
+        FindObjectOfType<escapeEvents>().setBools("contactenos");
+    }
     public void openMap()
     {
         Application.OpenURL("https://www.google.com/maps/place/CEFiDe/@-33.338361,-60.224463,17z/data=!3m1!4b1!4m5!3m4!1s0x95b767854e995313:0xe2a4ac4d1f881202!8m2!3d-33.338361!4d-60.222269");

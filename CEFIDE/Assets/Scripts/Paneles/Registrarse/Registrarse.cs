@@ -7,7 +7,6 @@ public class Registrarse : MonoBehaviour
     [SerializeField]
     private Animator regisAnim;
 
-
     public void onClickPaso2()
      {
         regisAnim.SetBool("backPaso2", false);

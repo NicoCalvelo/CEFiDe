@@ -20,5 +20,6 @@ public class homePanel : MonoBehaviour
         showImage.SetActive(true);
         showImage.GetComponentInChildren<RawImage>().texture = texture;
         showImage.GetComponentInChildren<AspectRatioFitter>().aspectRatio = w / h;
+        FindObjectOfType<escapeEvents>().setBools("showImage");
     }
 }

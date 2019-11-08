@@ -54,11 +54,13 @@ public class noticia : MonoBehaviour
     public void onClickShow(RawImage texture)
     {
         home.showImg(texture.texture, texture.texture.width, texture.texture.height);
+        FindObjectOfType<escapeEvents>().setBools("showImage");
     }
     public void showText()
     {
         userManager.Instance.leerTexto.SetActive(true);
         userManager.Instance.leerTexto.GetComponent<leerTexto>().titulo.text = titulo.text;
         userManager.Instance.leerTexto.GetComponent<leerTexto>().cuerpo.text = cuerpo.text;
+        FindObjectOfType<escapeEvents>().setBools("leerTexto");
     }
 }
