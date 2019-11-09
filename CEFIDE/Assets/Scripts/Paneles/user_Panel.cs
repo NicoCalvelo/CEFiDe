@@ -47,6 +47,10 @@ public class user_Panel : MonoBehaviour
     {
         FindObjectOfType<escapeEvents>().setBools("ingresar");
     }
+    public void cambiarUser()
+    {
+        PlayerPrefs.SetString("userDNI", "");
+    }
     public void activarBarraError(string error)
     {
         errorBar.SetActive(true);
