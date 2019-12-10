@@ -35,7 +35,7 @@ public class infoPanel : MonoBehaviour
     }
     public void openInstagram()
     {
-        Application.OpenURL("https://www.instagram.com/cefidesannicolas/?hl=es-la");
+        Application.OpenURL("https://www.instagram.com/cefide.gimnasio/");
     }
     public void openFacebook()
     {
