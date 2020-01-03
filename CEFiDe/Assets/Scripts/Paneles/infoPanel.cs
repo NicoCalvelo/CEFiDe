@@ -8,7 +8,9 @@ public class infoPanel : MonoBehaviour
 
     [Header("Horarios")]
     public RawImage planillaHorarios;
-
+    public GameObject showImage;
+    [SerializeField]
+    private RectTransform imgContent;
     public void Start()
     {
         AWSManager.Instance.buscarHorarios(() =>
@@ -20,6 +22,22 @@ public class infoPanel : MonoBehaviour
             float h = planillaHorarios.texture.height;
             planillaHorarios.GetComponent<AspectRatioFitter>().aspectRatio = w / h;
         });
+    }
+    public void onClickShow(RawImage texture)
+    {
+        showImg(texture.texture, texture.texture.width, texture.texture.height);
+        FindObjectOfType<escapeEvents>().setBools("showImage");
+    }
+    private void showImg(Texture texture, float w, float h)
+    {
+        showImage.SetActive(true);
+        showImage.GetComponentInChildren<RawImage>().texture = texture;
+        showImage.GetComponentInChildren<AspectRatioFitter>().aspectRatio = w / h;
+        FindObjectOfType<escapeEvents>().setBools("showImage");
+    }
+    public void openGalery()
+    {
+        imgContent.anchoredPosition = new Vector2(0,0);
     }
     public void openHorarios()
     {

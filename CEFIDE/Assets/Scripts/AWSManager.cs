@@ -19,6 +19,7 @@ public class AWSManager : MonoBehaviour
 {
     public user_Panel user_Panel;
     public userManager userManager;
+    public int errors = 0;
 
     private static AWSManager _instance;
     public static AWSManager Instance
@@ -62,6 +63,8 @@ public class AWSManager : MonoBehaviour
         AWSConfigs.HttpClient = AWSConfigs.HttpClientOption.UnityWebRequest;
 
 
+        userManager = GameObject.FindObjectOfType<userManager>();
+        user_Panel = userManager.Instance.userPanel.GetComponent<user_Panel>();
 
         S3Client.ListBucketsAsync(new ListBucketsRequest(), (responseObject) =>
         {
@@ -396,11 +399,17 @@ public class AWSManager : MonoBehaviour
                                 if(userManager.Instance.newUserInfo.tresCaracteres == tresCaracteres)
                                 {
                                     PlayerPrefs.SetString("userDNI", userManager.Instance.newUserInfo.DNI);
+                                    errors = 0;
                                     SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                                 }
                                 else
                                 {
-                                    user_Panel.activarBarraError("Los tres caracteres son incorrectos");
+                                    user_Panel.activarBarraError("Los cuatro caracteres son incorrectos");
+                                    errors++;
+                                    if(errors >= 3)
+                                    {
+                                        userManager.Instance.visualizarFrase.SetActive(true);
+                                    }
                                 }
                             }
                         }

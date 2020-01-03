@@ -35,7 +35,7 @@ public class showImg : MonoBehaviour
         }else if (Input.GetMouseButton(0))
         {
             Vector3 direction = touchStart - Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            transform.position -=  direction;
+            transform.position -=  direction * 3;
         }
     }
     void zoom(float increment)

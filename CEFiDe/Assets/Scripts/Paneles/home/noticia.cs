@@ -13,33 +13,22 @@ public class noticia : MonoBehaviour
     private void Start()
     {
         home = GameObject.Find("Home_Panel").GetComponent<homePanel>();
-        if (seccion.text == "CEFiDe")
-        {
-            logo.texture = home.logos[0];
-        }
-        if (seccion.text == "Nutrición")
-        {
-            logo.texture = home.logos[1];
-        }
-        if (seccion.text == "Gimnasio")
-        {
-            logo.texture = home.logos[2];
-        }
-        if (seccion.text == "Kinesiología")
-        {
-            logo.texture = home.logos[3];
-        }
-        if (seccion.text == "Spa")
-        {
-            logo.texture = home.logos[4];
-        }
-        if (seccion.text == "Fitness")
+        if (seccion.text == "Evaluaciones deportologicas")
         {
             logo.texture = home.logos[5];
-        }
-        if (seccion.text == "Escalada")
+        }else if (seccion.text == "Kinesiologia" || seccion.text == "Pilates reformer")
+        {
+            logo.texture = home.logos[3];
+        }else if (seccion.text == "Spa / Estetica corporal" || seccion.text == "Yoga")
+        {
+            logo.texture = home.logos[4];
+        }else if (seccion.text == "Muro de escalada")
         {
             logo.texture = home.logos[6];
+        }
+        else
+        {
+            logo.texture = home.logos[0];
         }
     }
     public void setNoticia(string secc, string tit, string cope, string cuerp, Texture img, float w, float h)

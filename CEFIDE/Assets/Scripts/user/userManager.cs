@@ -8,7 +8,6 @@ using System.IO;
 
 public class userManager : MonoBehaviour
 {
-
     private static userManager _instance;
     public static userManager Instance
     {
@@ -22,7 +21,11 @@ public class userManager : MonoBehaviour
             return _instance;
         }
     }
-
+    [SerializeField]
+    private GameObject panel;
+    [SerializeField]
+    private Text frase;
+    public GameObject visualizarFrase;
     public AWSManager aWSManager;
     public userInfo newUserInfo;
     public userEvaluaciones newUserEvaluaciones;
@@ -91,7 +94,11 @@ public class userManager : MonoBehaviour
         }
 
     }
-
+    public void onclickShowFrase()
+    {
+        panel.SetActive(true);
+        frase.text = newUserInfo.fraseRecuerdo;
+    }
     public void submitUser()
     {
         userInfo awsUser = new userInfo();
