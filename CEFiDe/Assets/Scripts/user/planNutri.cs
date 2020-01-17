@@ -15,14 +15,9 @@ public class planNutri : MonoBehaviour
     {
         if(user_manag.newUserEvaluaciones.planNutricional != null)
         {
-            Texture2D reconstructedImage = new Texture2D(1, 1);
-            reconstructedImage.LoadImage(userManager.Instance.newUserEvaluaciones.planNutricional);
-            Texture image = reconstructedImage as Texture;
             display.transform.GetChild(3).GetComponentInChildren<Text>().text = "Plan nutricional";
-            display.transform.GetChild(1).GetComponentInChildren<RawImage>().texture = image;
-            float w = image.width;
-            float h = image.height;
-            display.transform.GetChild(1).GetComponentInChildren<AspectRatioFitter>().aspectRatio = w / h;
+            display.GetComponent<display>().s = userManager.Instance.newUserEvaluaciones.planNutricional;
+            display.GetComponent<display>().setDisplay();
             scrollScreen.sizeDelta = new Vector2(0, 640);
         }
     }

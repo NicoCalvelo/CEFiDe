@@ -17,89 +17,64 @@ public class displayManager : MonoBehaviour
         scrollScreen.sizeDelta = new Vector2(0, 211);
         newUserEvaluaciones = userManager.Instance.newUserEvaluaciones;
         int pos = 0;
-        if (newUserEvaluaciones.resultadosEvaluacion.Length != 0)
+        if (newUserEvaluaciones.resultadosEvaluacion.Length > 1)
         {
-            Texture2D reconstructedImage = new Texture2D(1, 1);
-            reconstructedImage.LoadImage(userManager.Instance.newUserEvaluaciones.resultadosEvaluacion);
-            Texture image = reconstructedImage as Texture;
             Vector3 displayPos = new Vector3(0, 0 - pos, 0);
             GameObject newDisplay = Instantiate(displayPrefab, Vector3.zero, Quaternion.identity, gameObject.transform);
             newDisplay.GetComponent<RectTransform>().localPosition = displayPos;
             newDisplay.name = "Resultados Evaluaciones";
-            newDisplay.transform.GetChild(3).GetComponentInChildren<Text>().text = newDisplay.name;
-            newDisplay.transform.GetChild(1).GetComponentInChildren<RawImage>().texture = image;
-            float w = image.width;
-            float h = image.height;
-            newDisplay.transform.GetChild(1).GetComponentInChildren<AspectRatioFitter>().aspectRatio = w / h;
-            scrollScreen.sizeDelta += new Vector2(0, 640);
-            pos += 640;
+            newDisplay.transform.GetChild(0).GetComponentInChildren<Text>().text = newDisplay.name;
+            newDisplay.GetComponent<display>().s = newUserEvaluaciones.resultadosEvaluacion;
+            newDisplay.GetComponent<display>().setDisplay();
+            scrollScreen.sizeDelta += new Vector2(0, 100);
+            pos += 100;
         }
-        if (newUserEvaluaciones.gimnasio.Length != 0)
+        if (newUserEvaluaciones.gimnasio.Length > 1)
         {
-            Texture2D reconstructedImage = new Texture2D(1, 1);
-            reconstructedImage.LoadImage(userManager.Instance.newUserEvaluaciones.gimnasio);
-            Texture image = reconstructedImage as Texture;
             Vector3 displayPos = new Vector3(0, 0 - pos, 0);
             GameObject newDisplay = Instantiate(displayPrefab, Vector3.zero, Quaternion.identity, gameObject.transform);
             newDisplay.GetComponent<RectTransform>().localPosition = displayPos;
             newDisplay.name = "Planilla Gimnasio";
-            newDisplay.transform.GetChild(3).GetComponentInChildren<Text>().text = newDisplay.name;
-            newDisplay.transform.GetChild(1).GetComponentInChildren<RawImage>().texture = image;
-            float w = image.width;
-            float h = image.height;
-            newDisplay.transform.GetChild(1).GetComponentInChildren<AspectRatioFitter>().aspectRatio = w / h;
-            scrollScreen.sizeDelta += new Vector2(0, 640);
-            pos += 640;
+            newDisplay.transform.GetChild(0).GetComponentInChildren<Text>().text = newDisplay.name;
+            newDisplay.GetComponent<display>().s = newUserEvaluaciones.gimnasio;
+            newDisplay.GetComponent<display>().setDisplay();
+            scrollScreen.sizeDelta += new Vector2(0, 100);
+            pos += 100;
         }
-        if (newUserEvaluaciones.aerobico.Length != 0)
+        if (newUserEvaluaciones.aerobico.Length > 1)
         {
-            Texture2D reconstructedImage = new Texture2D(1, 1);
-            reconstructedImage.LoadImage(userManager.Instance.newUserEvaluaciones.aerobico);
-            Texture image = reconstructedImage as Texture;
             Vector3 displayPos = new Vector3(0, 0 - pos, 0);
             GameObject newDisplay = Instantiate(displayPrefab, Vector3.zero, Quaternion.identity, gameObject.transform);
             newDisplay.GetComponent<RectTransform>().localPosition = displayPos;
             newDisplay.name = "Planilla Aerobico";
-            newDisplay.transform.GetChild(3).GetComponentInChildren<Text>().text = newDisplay.name;
-            newDisplay.transform.GetChild(1).GetComponentInChildren<RawImage>().texture = image;
-            float w = image.width;
-            float h = image.height;
-            newDisplay.transform.GetChild(1).GetComponentInChildren<AspectRatioFitter>().aspectRatio = w / h;
-            scrollScreen.sizeDelta += new Vector2(0, 640);
-            pos += 640;
+            newDisplay.transform.GetChild(0).GetComponentInChildren<Text>().text = newDisplay.name;
+            newDisplay.GetComponent<display>().s = newUserEvaluaciones.aerobico;
+            newDisplay.GetComponent<display>().setDisplay();
+            scrollScreen.sizeDelta += new Vector2(0, 100);
+            pos += 100;
         }
-        if (newUserEvaluaciones.flexibilidad.Length != 0)
+        if (newUserEvaluaciones.flexibilidad.Length > 1)
         {
-            Texture2D reconstructedImage = new Texture2D(1, 1);
-            reconstructedImage.LoadImage(userManager.Instance.newUserEvaluaciones.flexibilidad);
-            Texture image = reconstructedImage as Texture;
             Vector3 displayPos = new Vector3(0, 0 - pos, 0);
             GameObject newDisplay = Instantiate(displayPrefab, Vector3.zero, Quaternion.identity, gameObject.transform);
             newDisplay.GetComponent<RectTransform>().localPosition = displayPos;
             newDisplay.name = "Planilla Flexibilidad";
-            newDisplay.transform.GetChild(3).GetComponentInChildren<Text>().text = newDisplay.name;
-            newDisplay.transform.GetChild(1).GetComponentInChildren<RawImage>().texture = image;
-            float w = image.width;
-            float h = image.height;
-            newDisplay.transform.GetChild(1).GetComponentInChildren<AspectRatioFitter>().aspectRatio = w / h;
-            scrollScreen.sizeDelta += new Vector2(0, 640);
-            pos += 640;
+            newDisplay.transform.GetChild(0).GetComponentInChildren<Text>().text = newDisplay.name;
+            newDisplay.GetComponent<display>().s = newUserEvaluaciones.flexibilidad;
+            newDisplay.GetComponent<display>().setDisplay();
+            scrollScreen.sizeDelta += new Vector2(0, 100);
+            pos += 100;
         }
-        if (newUserEvaluaciones.velocidad.Length != 0)
+        if (newUserEvaluaciones.velocidad.Length > 1)
         {
-            Texture2D reconstructedImage = new Texture2D(1, 1);
-            reconstructedImage.LoadImage(userManager.Instance.newUserEvaluaciones.velocidad);
-            Texture image = reconstructedImage as Texture;
             Vector3 displayPos = new Vector3(0, 0 - pos, 0);
             GameObject newDisplay = Instantiate(displayPrefab, Vector3.zero, Quaternion.identity, gameObject.transform);
             newDisplay.GetComponent<RectTransform>().localPosition = displayPos;
             newDisplay.name = "Planilla Velocidad";
-            newDisplay.transform.GetChild(3).GetComponentInChildren<Text>().text = newDisplay.name;
-            newDisplay.transform.GetChild(1).GetComponentInChildren<RawImage>().texture = image;
-            float w = image.width;
-            float h = image.height;
-            newDisplay.transform.GetChild(1).GetComponentInChildren<AspectRatioFitter>().aspectRatio = w / h;
-            scrollScreen.sizeDelta += new Vector2(0, 640);
+            newDisplay.transform.GetChild(0).GetComponentInChildren<Text>().text = newDisplay.name;
+            newDisplay.GetComponent<display>().s = newUserEvaluaciones.velocidad;
+            newDisplay.GetComponent<display>().setDisplay();
+            scrollScreen.sizeDelta += new Vector2(0, 100);
         }
     }
 }

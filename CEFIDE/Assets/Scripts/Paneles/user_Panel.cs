@@ -14,7 +14,8 @@ public class user_Panel : MonoBehaviour
     private GameObject errorBar;
 
     public GameObject showImage;
-
+    [SerializeField]
+    private RectTransform scrollScreen;
     [Header("Divisor")]
     public Text user_name;
 
@@ -56,6 +57,9 @@ public class user_Panel : MonoBehaviour
         errorBar.SetActive(true);
         errorBar.GetComponentInChildren<Text>().text = error;
     }
-    
+    public void setScrollSize(int size)
+    {
+        scrollScreen.sizeDelta = new Vector2(0, size);
+    }
 
 }
