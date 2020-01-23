@@ -37,12 +37,14 @@ public class userManager : MonoBehaviour
     public GameObject userPanel;
     public GameObject leerTexto;
 
-    [Header("Info_Panle")]
+    [Header("Info_Panel")]
     public byte[] horarios;
 
     [Header("Ingresar_Panel")]
     public InputField dni;
     public InputField tresCaracteres;
+    [Header("User_Panel")]
+    public displayManager displayManag;
 
 
     private void Awake()

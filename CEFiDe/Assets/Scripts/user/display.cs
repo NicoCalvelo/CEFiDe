@@ -4,6 +4,7 @@ using UnityEngine;
 using System.IO;
 using UnityEngine.UI;
 using System.Runtime.Serialization.Formatters.Binary;
+using UnityAndroidOpenUrl;
 
 public class display : MonoBehaviour
 {
@@ -15,7 +16,10 @@ public class display : MonoBehaviour
     }
     public void onClickShow()
     {
-        Application.OpenURL(Application.persistentDataPath + name + ".pdf");
+        //Application.OpenURL(Application.persistentDataPath + name + ".pdf");
+         string dataType = "application/pdf";
+         string documentUrl = Application.persistentDataPath + name + ".pdf";
+         AndroidOpenUrl.OpenFile(documentUrl, dataType); 
     }
     public void setDisplay()
     {

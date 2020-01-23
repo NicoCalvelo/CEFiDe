@@ -199,6 +199,7 @@ public class AWSManager : MonoBehaviour
                                 BinaryFormatter bf = new BinaryFormatter();
                                 userEvaluaciones downloadedInfo = (userEvaluaciones)bf.Deserialize(memory);
                                 userManager.Instance.newUserEvaluaciones = downloadedInfo;
+                                userManager.displayManag.setDisplays();
                             }
                         }
                     });
@@ -206,7 +207,8 @@ public class AWSManager : MonoBehaviour
                 else
                 {
                     Debug.Log("Planillas user not found");
-
+                    userManager.displayManag.load2.SetActive(false);
+                    userManager.displayManag.textNo.SetActive(true);
                 }
             }
             else

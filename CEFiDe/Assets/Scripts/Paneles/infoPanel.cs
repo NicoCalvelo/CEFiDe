@@ -35,9 +35,14 @@ public class infoPanel : MonoBehaviour
         showImage.GetComponentInChildren<AspectRatioFitter>().aspectRatio = w / h;
         FindObjectOfType<escapeEvents>().setBools("showImage");
     }
+    public void openNH()
+    {
+        FindObjectOfType<escapeEvents>().setBools("nuestra historia");
+    }
     public void openGalery()
     {
         imgContent.anchoredPosition = new Vector2(0,0);
+        FindObjectOfType<escapeEvents>().setBools("galery");
     }
     public void openHorarios()
     {
