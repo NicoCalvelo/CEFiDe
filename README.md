@@ -1,2 +1,2 @@
 # CEFIDE
-Esta es la aplicación para el gimnasio CEFIDE
+App para el gimnasio CEFIDE
